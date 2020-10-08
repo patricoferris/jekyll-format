@@ -9,6 +9,8 @@ jobs:
         operating-system: [macos-latest, ubuntu-latest, windows-latest]
         ocaml-version: [ '4.11.1', '4.10.1', '4.09.0', '4.08.1' ]
     steps:
+    - run: pwd
+    - run: ls
     - uses: actions/checkout@v2
     - uses: avsm/setup-ocaml@v1.1.1
       with:
