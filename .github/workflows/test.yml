@@ -21,7 +21,7 @@ jobs:
     - working-directory: /src
       run: sudo chown opam /src
     - working-directory: /src
-      run: cd ~/opam-repository && (git cat-file -e 93abd38ac15a24d900149dc88ebc5329cf0d6196
+      run: cd /home/opam/opam-repository && (git cat-file -e 93abd38ac15a24d900149dc88ebc5329cf0d6196
         || git fetch origin master) && git reset -q --hard 93abd38ac15a24d900149dc88ebc5329cf0d6196
         && git log --no-decorate -n1 --oneline && opam update -u
     - working-directory: /src
