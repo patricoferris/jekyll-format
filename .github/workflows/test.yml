@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ocurrent/opam@sha256:72ebeabcbc037edb3c93703cc9889a3cb4f8aa7d4afb29d4968a361d69f90d84
+      env:
+        HOME: /home/opam
       options: --user 1000
     env:
       DEPS: alcotest.1.2.3 astring.0.8.5 base.v0.14.0 base-bigarray.base base-bytes.base
@@ -17,8 +19,7 @@ jobs:
         ptime.0.8.5 re.1.9.0 result.1.5 rresult.0.6.0 seq.base sexplib.v0.14.0 sexplib0.v0.14.0
         stdlib-shims.0.1.0 topkg.1.0.3 uchar.0.0.2 uuidm.0.9.7 uutf.1.0.2 yaml.2.1.0
     steps:
-    - run: env
-    - run: cd /home/opam/opam-repository && (git cat-file -e 93abd38ac15a24d900149dc88ebc5329cf0d6196
+    - run: cd ~/opam-repository && (git cat-file -e 93abd38ac15a24d900149dc88ebc5329cf0d6196
         || git fetch origin master) && git reset -q --hard 93abd38ac15a24d900149dc88ebc5329cf0d6196
         && git log --no-decorate -n1 --oneline && opam update -u
     - run: mkdir -p "./"
