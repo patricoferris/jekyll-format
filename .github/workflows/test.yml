@@ -5,7 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ocurrent/opam:debian-10-ocaml-4.10@sha256:4d2ad4606b9a2e2d57f5a245342dc524b4f769606fc3078c486f002d8474ed4f
-      options: --user 0
     env:
       DEPS: alcotest.1.2.3 astring.0.8.5 base.v0.14.0 base-bigarray.base base-bytes.base
         base-threads.base base-unix.base bigarray-compat.1.0.0 bos.0.2.0 cmdliner.1.0.4
@@ -17,7 +16,8 @@ jobs:
         ptime.0.8.5 re.1.9.0 result.1.5 rresult.0.6.0 seq.base sexplib.v0.14.0 sexplib0.v0.14.0
         stdlib-shims.0.1.0 topkg.1.0.3 uchar.0.0.2 uuidm.0.9.7 uutf.1.0.2 yaml.2.1.0
     steps:
-    - run: mkdir /src || true
+    - run: pwd && ls 
+    - run: mkdir ~/src || true
     - working-directory: /src
       run: sudo chown opam /src
     - working-directory: /src
