@@ -7,6 +7,7 @@ jobs:
       image: ocurrent/opam@sha256:72ebeabcbc037edb3c93703cc9889a3cb4f8aa7d4afb29d4968a361d69f90d84
       env:
         HOME: /home/opam
+        GITHUB_WORKSPACE: /home/opam
       options: --user 1000
     env:
       HOME: /home/opam
