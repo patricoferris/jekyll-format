@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ocurrent/opam@sha256:72ebeabcbc037edb3c93703cc9889a3cb4f8aa7d4afb29d4968a361d69f90d84
+      options: --user 1000
     env:
       DEPS: alcotest.1.2.3 astring.0.8.5 base.v0.14.0 base-bigarray.base base-bytes.base
         base-threads.base base-unix.base bigarray-compat.1.0.0 bos.0.2.0 cmdliner.1.0.4
