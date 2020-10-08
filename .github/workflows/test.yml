@@ -7,7 +7,6 @@ jobs:
       image: ocurrent/opam@sha256:72ebeabcbc037edb3c93703cc9889a3cb4f8aa7d4afb29d4968a361d69f90d84
       env:
         HOME: /home/opam
-        GITHUB_WORKSPACE: /home/opam
       options: --user 1000
     env:
       HOME: /home/opam
@@ -26,7 +25,7 @@ jobs:
         && git log --no-decorate -n1 --oneline && opam update -u
     - run: mkdir -p "./"
     - run: cd /home/opam 
-    - uses: actions/checkout@v2
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
     - run: opam pin add -yn jekyll-format.dev "./"
     - run: opam depext --update -y jekyll-format.dev $DEPS
     - run: opam install $DEPS
