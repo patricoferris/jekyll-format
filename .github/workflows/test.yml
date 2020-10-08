@@ -22,13 +22,11 @@ jobs:
         ptime.0.8.5 re.1.9.0 result.1.5 rresult.0.6.0 seq.base sexplib.v0.14.0 sexplib0.v0.14.0
         stdlib-shims.0.1.0 topkg.1.0.3 uchar.0.0.2 uuidm.0.9.7 uutf.1.0.2 yaml.2.1.0
     steps:
-    - run: ls ./
-    - run: ls /home/opam/package
     - run: cd ~/opam-repository && (git cat-file -e 93abd38ac15a24d900149dc88ebc5329cf0d6196
         || git fetch origin master) && git reset -q --hard 93abd38ac15a24d900149dc88ebc5329cf0d6196
         && git log --no-decorate -n1 --oneline && opam update -u
     - run: mkdir -p "./"
-    - run: cd /home/opam 
+    - run: cd /home/opam/package 
     - run: cp jekyll-format.opam ./
     - run: opam pin add -yn jekyll-format.dev "./"
     - run: opam depext --update -y jekyll-format.dev $DEPS
