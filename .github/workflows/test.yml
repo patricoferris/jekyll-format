@@ -27,7 +27,7 @@ jobs:
         && git log --no-decorate -n1 --oneline && opam update -u
     - run: mkdir -p "./"
     - run: cd /home/opam/package 
-    - run: cp jekyll-format.opam ./
+    - uses: actions/checkout@v2
     - run: opam pin add -yn jekyll-format.dev "./"
     - run: opam depext --update -y jekyll-format.dev $DEPS
     - run: opam install $DEPS
