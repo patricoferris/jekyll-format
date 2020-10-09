@@ -27,9 +27,8 @@ jobs:
         || git fetch origin master) && git reset -q --hard 93abd38ac15a24d900149dc88ebc5329cf0d6196
         && git log --no-decorate -n1 --oneline && opam update -u
     - run: mkdir -p "./"
-    - run: cd /home/opam 
     - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
-      working-directory: /home/opam
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
     - run: opam depext --update -y jekyll-format.dev $DEPS
     - run: opam install $DEPS
