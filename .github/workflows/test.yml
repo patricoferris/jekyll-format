@@ -26,7 +26,7 @@ jobs:
     - run: cd ~/opam-repository && (git cat-file -e 93abd38ac15a24d900149dc88ebc5329cf0d6196
         || git fetch origin master) && git reset -q --hard 93abd38ac15a24d900149dc88ebc5329cf0d6196
         && git log --no-decorate -n1 --oneline && opam update -u
-    - run: mkdir -p "./"
+    - run: mkdir -p /home/opam/package
     - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
       working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
