@@ -2,6 +2,9 @@ name: Github Action Workflow
 on: [push, pull_request]
 jobs:
   job:
+    defaults:
+        run: 
+            working-directory: /home/opam
     runs-on: ubuntu-latest
     container:
       image: ocurrent/opam@sha256:72ebeabcbc037edb3c93703cc9889a3cb4f8aa7d4afb29d4968a361d69f90d84
@@ -26,6 +29,7 @@ jobs:
     - run: mkdir -p "./"
     - run: cd /home/opam 
     - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam
     - run: opam pin add -yn jekyll-format.dev "./"
     - run: opam depext --update -y jekyll-format.dev $DEPS
     - run: opam install $DEPS
