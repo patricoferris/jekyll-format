@@ -30,6 +30,10 @@ jobs:
     - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
       working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
+      working-directory: /home/opam/package
     - run: opam install $DEPS
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
+      working-directory: /home/opam/package
