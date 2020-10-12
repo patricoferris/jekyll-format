@@ -23,25 +23,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   debian-10-4_10:
     runs-on: ubuntu-latest
     container:
@@ -64,25 +59,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   debian-10-4_09:
     runs-on: ubuntu-latest
     container:
@@ -105,25 +95,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   alpine-3_12-4_11:
     runs-on: ubuntu-latest
     container:
@@ -146,25 +131,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   alpine-3_12-4_10:
     runs-on: ubuntu-latest
     container:
@@ -187,25 +167,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   alpine-3_12-4_09:
     runs-on: ubuntu-latest
     container:
@@ -228,25 +203,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   ubuntu-18_04-4_11:
     runs-on: ubuntu-latest
     container:
@@ -269,25 +239,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   ubuntu-18_04-4_10:
     runs-on: ubuntu-latest
     container:
@@ -310,25 +275,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   ubuntu-18_04-4_09:
     runs-on: ubuntu-latest
     container:
@@ -351,25 +311,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   opensuse-15_2-4_11:
     runs-on: ubuntu-latest
     container:
@@ -392,25 +347,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   opensuse-15_2-4_10:
     runs-on: ubuntu-latest
     container:
@@ -433,25 +383,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   opensuse-15_2-4_09:
     runs-on: ubuntu-latest
     container:
@@ -474,25 +419,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   centos-8-4_11:
     runs-on: ubuntu-latest
     container:
@@ -515,25 +455,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   centos-8-4_10:
     runs-on: ubuntu-latest
     container:
@@ -556,25 +491,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   centos-8-4_09:
     runs-on: ubuntu-latest
     container:
@@ -597,25 +527,20 @@ jobs:
       run:
         working-directory: /home/opam
     steps:
-    - run: mkdir -p /src
-    - run: sudo chown opam /src
-      working-directory: /src
     - run: cd ~/opam-repository && (git cat-file -e ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         git fetch origin master) && git reset -q --hard ae1dd9a1f8aa445840d9c5e6a05b22cfa86b6e22
         && git log --no-decorate -n1 --oneline && opam update -u
-      working-directory: /src
-    - run: mkdir -p "./"
-      working-directory: /src
-    - run: cp jekyll-format.opam ./
+    - run: mkdir -p /home/opam/package
+    - run: git clone https://github.com/$GITHUB_REPOSITORY . && git checkout $GITHUB_SHA
+      working-directory: /home/opam/package
     - run: opam pin add -yn jekyll-format.dev "./"
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam depext --update -y jekyll-format.dev $DEPS
-      working-directory: /src
+      working-directory: /home/opam/package
     - run: opam install $DEPS
-      working-directory: /src
-    - run: cp . /src/
+      working-directory: /home/opam/package
     - run: opam exec -- dune build @install @runtest && rm -rf _build
-      working-directory: /src
+      working-directory: /home/opam/package
   winmac:
     strategy:
       matrix:
