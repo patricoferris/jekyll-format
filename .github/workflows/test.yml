@@ -567,6 +567,6 @@ jobs:
         ocaml-version: ${{ matrix.ocaml-version }}
     - run: opam pin add -yn jekyll-format.dev "./"
     - run: opam depext --update -yt jekyll-format.dev
-    - run: opam list --short --columns=package > installed.deps; for dep in $DEPS; do [[ "$dep" =~ $(echo ^\($(paste -sd'|' installed.deps)\)$) ]] && export NEW_DEPS="$dep $NEW_DEPS"; done; opam install $NEW_DEPS
+    - run: opam list --short --columns=package > installed.deps; for dep in $DEPS; do [[ "$dep" =~ $(echo ^\($(paste -sd'|' installed.deps)\)$) ]] && export NEW_DEPS="$dep $NEW_DEPS"; done; echo $NEW_DEPS; opam install $NEW_DEPS
     - run: opam exec -- dune build @install @runtest && rm -rf _build
 
