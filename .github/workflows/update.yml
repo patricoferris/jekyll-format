@@ -3,9 +3,12 @@ on: [push, pull_request]
 jobs:
   check-ci:
     runs-on: ubuntu-latest
+    container:
+      image: patricoferris/ocaml-ci-action:latest
+      volumes: 
+        - /var/run/docker.sock:/var/run/docker.sock
     steps:
+      - run: git clone https://github.com/$GITHUB_REPOSITORY package && cd package && git checkout $GITHUB_SHA
       - name: OCaml-CI 
-        run: docker run -v $(pwd):/var/lib/ocurrent/package -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -it patricoferris/ocaml-ci-action:latest ocaml-ci-github --winmac --exit /home/opam/package 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        run: ocaml-ci-github --winmac --exit /var/lib/ocurrent/package
 
