@@ -22,7 +22,7 @@ jobs:
           opam pin add -yn current_slack.dev "./ocurrent"
           opam pin add -yn current_web.dev "./ocurrent"
           opam pin add -yn ocluster-api.dev "./ocluster"
-      - run: cd ocaml-ci && opam exec -- dune exec ocaml-ci-github --winmac --exit /home/opam/package > /home/opam/package/.github/workflows/ocaml-ci.yml
+      - run: cd ocaml-ci && opam install --deps-only -y . && opam exec -- dune exec ocaml-ci-github --winmac --exit /home/opam/package > /home/opam/package/.github/workflows/ocaml-ci.yml
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
 
