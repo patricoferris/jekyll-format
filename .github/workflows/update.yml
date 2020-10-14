@@ -10,5 +10,5 @@ jobs:
     steps:
       - run: git clone https://github.com/$GITHUB_REPOSITORY package && cd package && git checkout $GITHUB_SHA
       - name: OCaml-CI 
-        run: ocaml-ci-github --winmac --exit /var/lib/ocurrent/package
+        run: ocaml-ci-github --winmac --exit $(pwd)/package
 
