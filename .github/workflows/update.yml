@@ -6,6 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: avsm/setup-ocaml@v1
+        with: 
+            ocaml-version: 4.10.0
       - run: git clone https://github.com/$GITHUB_REPOSITORY package && git checkout $GITHUB_SHA
       - run: git clone --recursive https://github.com/patricoferris/ocaml-ci.git 
       - run: | 
