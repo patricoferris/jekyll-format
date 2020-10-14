@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: avsm/setup-ocaml@v1
-      - run: git clone https://goithub.com/$GITHUB_REPOSITORY package && git checkout $GITHUB_SHA
+      - run: git clone https://github.com/$GITHUB_REPOSITORY package && git checkout $GITHUB_SHA
       - run: git clone --recursive https://github.com/patricoferris/ocaml-ci.git 
       - run: |
           opam pin add -yn github-workflow git+https://github.com/patricoferris/opam-github-workflow.git#3f05bfaf406511e77595a63f9ba85c0d31a1369a
