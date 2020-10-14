@@ -4,28 +4,8 @@ jobs:
   check-ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: avsm/setup-ocaml@v1
-        with: 
-            ocaml-version: 4.10.0
-      - run: git clone https://github.com/$GITHUB_REPOSITORY package && git checkout $GITHUB_SHA
-      - run: git clone --recursive https://github.com/patricoferris/ocaml-ci.git 
-      - run: | 
-          cd ocaml-ci 
-          opam pin add -yn github-workflow git+https://github.com/patricoferris/opam-github-workflow.git#3f05bfaf406511e77595a63f9ba85c0d31a1369a
-          opam pin add -yn obuilder-spec "./ocluster/obuilder"
-          opam pin add -yn obuilder "./ocluster/obuilder"
-          opam pin add -yn current_ansi.dev "./ocurrent"
-          opam pin add -yn current_docker.dev "./ocurrent"
-          opam pin add -yn current_github.dev "./ocurrent"
-          opam pin add -yn current_git.dev "./ocurrent"
-          opam pin add -yn current_incr.dev "./ocurrent"
-          opam pin add -yn current.dev "./ocurrent"
-          opam pin add -yn current_rpc.dev "./ocurrent"
-          opam pin add -yn current_slack.dev "./ocurrent"
-          opam pin add -yn current_web.dev "./ocurrent"
-          opam pin add -yn ocluster-api.dev "./ocluster"
-      - run: cd ocaml-ci && opam install --deps-only -y . && opam exec -- dune exec ocaml-ci-github --winmac --exit /home/opam/package > /home/opam/package/.github/workflows/ocaml-ci.yml
+      - name: OCaml-CI 
+        run: docker run -v $(pwd):/var/lib/ocurrent/package -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -it patricoferris/ocaml-ci-action:latest ocaml-ci-github --winmac --exit /home/opam/package 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
 
