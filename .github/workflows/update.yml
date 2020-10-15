@@ -15,7 +15,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with: 
           name: package
-          path: **/ocaml-ci.yml
+          path: /**/ocaml-ci.yml
   pull-request: 
     runs-on: ubuntu-latest
     needs: check-ci
