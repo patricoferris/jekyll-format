@@ -8,22 +8,15 @@ jobs:
       volumes: 
         - /var/run/docker.sock:/var/run/docker.sock
     steps:
-      - run: git clone https://github.com/$GITHUB_REPOSITORY package && cd package && git checkout $GITHUB_SHA
+      - run: git clone https://github.com/$GITHUB_REPOSITORY $GITHUB_WORKSPACE/package && cd $GITHUB_WORKSPACE/package && git checkout $GITHUB_SHA
       - name: OCaml-CI 
-        run: ocaml-ci-github --winmac --exit $(pwd)/package
-      - run: cat $(pwd)/package/.github/workflows/ocaml-ci.yml
-      - uses: actions/upload-artifact@v2
+        run: ocaml-ci-github --winmac --exit $GITHUB_WORKSPACE/package
+      - run: cat $GITHUB_WORKSPACE/package/.github/workflows/ocaml-ci.yml
+      - uses: peter-evans/create-pull-request@v3
         with: 
-          name: package
-          path: /**/ocaml-ci.yml
-  pull-request: 
-    runs-on: ubuntu-latest
-    needs: check-ci
-    steps:
-      - uses: actions/download-artifact@v2
-        with: 
-          name: package
-          path: .github/workflows/ocaml-ci.yml
-      - run: cat .github/workflows/ocaml-ci.yml
+          path: package
+          commit-message: OCaml CI
+          title: Check OCaml-CI 
+          branch: ocaml-ci/check
 
 
