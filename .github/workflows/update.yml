@@ -17,6 +17,7 @@ jobs:
           name: package
           path: /github/workspace/package
   pull-request: 
+    runs-on: ubuntu-latest
     needs: check-ci
     steps:
       - uses: actions/download-artifact@v2
