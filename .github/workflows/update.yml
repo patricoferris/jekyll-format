@@ -18,6 +18,7 @@ jobs:
       - uses: peter-evans/create-pull-request@v3
         with: 
           path: package
+          token: ${{ secrets.PAT }}
           commit-message: OCaml CI
           title: Check OCaml-CI 
           branch: ocaml-ci/check
