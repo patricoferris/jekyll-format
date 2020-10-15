@@ -12,6 +12,9 @@ jobs:
       - name: OCaml-CI 
         run: ocaml-ci-github --winmac --exit $GITHUB_WORKSPACE/package
       - run: cat $GITHUB_WORKSPACE/package/.github/workflows/ocaml-ci.yml
+      - run: |
+          git config user.name 'Patrick Ferris'
+          git config user.email 'patricoferris@users.noreply.github.com'
       - uses: peter-evans/create-pull-request@v3
         with: 
           path: package
