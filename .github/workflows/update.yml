@@ -12,4 +12,16 @@ jobs:
       - name: OCaml-CI 
         run: ocaml-ci-github --winmac --exit $(pwd)/package
       - run: cat $(pwd)/package/.github/workflows/ocaml-ci.yml
+      - uses: actions/upload-artifact@v2
+        with: 
+          name: package
+          path: /github/workspace/package
+  pull-request: 
+    needs: check-ci
+    steps:
+      - uses: actions/download-artifact@v2
+        with: 
+          name: package
+      - run: cat .github/workflows/ocaml-ci.yml
+
 
