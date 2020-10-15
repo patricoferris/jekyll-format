@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.PAT }}
           commit-message: OCaml CI
           title: Check OCaml-CI 
-          branch: ocaml-ci/check
+          branch: ocaml-ci-check
           base: master
 
 
